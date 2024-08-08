@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import Navbar from './components/Navbar';
+import './globals.css';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Social Media App",
-  description: "Social media app built with Next.js",
+  title: 'Social Media App',
+  description: 'Social media app built with Next.js',
 };
 
 export default function RootLayout({
@@ -16,7 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="w-full bg-white md:px-8 lg:px-16 xl:px-32 2xl:px-64">
+          <Navbar />
+        </div>
+        <div className="w-full bg-white md:px-8 lg:px-16 xl:px-32 2xl:px-64">{children}</div>
+      </body>
     </html>
   );
 }
