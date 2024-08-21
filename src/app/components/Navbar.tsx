@@ -44,13 +44,13 @@ const Navbar = () => {
         </ClerkLoading>
         <ClerkLoaded>
           <SignedIn>
-            <div className="cursor-pointer">
+            <div className="hidden md:block cursor-pointer">
               <Image src="/people.png" alt="people" width={24} height={24} />
             </div>
-            <div className="cursor-pointer">
+            <div className="hidden md:block cursor-pointer">
               <Image src="/messages.png" alt="messages" width={24} height={24} />
             </div>
-            <div className="cursor-pointer">
+            <div className="hidden md:block cursor-pointer">
               <Image src="/notifications.png" alt="notifications" width={24} height={24} />
             </div>
             <UserButton />
