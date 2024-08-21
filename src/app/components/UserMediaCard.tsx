@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const UserMediaCard = ({ userId }: { userId: string }) => {
   return (
@@ -9,6 +10,73 @@ const UserMediaCard = ({ userId }: { userId: string }) => {
         <Link href="/" className="text-blue-500 text-sm">
           See all
         </Link>
+      </div>
+      {/* BOTTOM*/}
+      <div className="flex gap-4 justify-normal flex-wrap">
+        <div className="relative w-1/5 h-24">
+          <Image
+            src="https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?auto=compress&cs=tinysrgb&w=400"
+            alt=""
+            fill
+            className="object-cover rounded-md"
+          />
+        </div>
+        <div className="relative w-1/5 h-24">
+          <Image
+            src="https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?auto=compress&cs=tinysrgb&w=400"
+            alt=""
+            fill
+            className="object-cover rounded-md"
+          />
+        </div>
+        <div className="relative w-1/5 h-24">
+          <Image
+            src="https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?auto=compress&cs=tinysrgb&w=400"
+            alt=""
+            fill
+            className="object-cover rounded-md"
+          />
+        </div>
+        <div className="relative w-1/5 h-24">
+          <Image
+            src="https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?auto=compress&cs=tinysrgb&w=400"
+            alt=""
+            fill
+            className="object-cover rounded-md"
+          />
+        </div>
+        <div className="relative w-1/5 h-24">
+          <Image
+            src="https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?auto=compress&cs=tinysrgb&w=400"
+            alt=""
+            fill
+            className="object-cover rounded-md"
+          />
+        </div>
+        <div className="relative w-1/5 h-24">
+          <Image
+            src="https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?auto=compress&cs=tinysrgb&w=400"
+            alt=""
+            fill
+            className="object-cover rounded-md"
+          />
+        </div>
+        <div className="relative w-1/5 h-24">
+          <Image
+            src="https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?auto=compress&cs=tinysrgb&w=400"
+            alt=""
+            fill
+            className="object-cover rounded-md"
+          />
+        </div>
+        <div className="relative w-1/5 h-24">
+          <Image
+            src="https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?auto=compress&cs=tinysrgb&w=400"
+            alt=""
+            fill
+            className="object-cover rounded-md"
+          />
+        </div>
       </div>
     </div>
   );
