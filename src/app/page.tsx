@@ -1,8 +1,8 @@
-import AddPosts from './components/AddPosts';
-import Feed from './components/Feed';
-import LeftMenu from './components/LeftMenu';
-import RightMenu from './components/RightMenu';
-import Stories from './components/Stories';
+import AddPosts from '../components/AddPosts';
+import Feed from '../components/Feed';
+import LeftMenu from '../components/LeftMenu';
+import RightMenu from '../components/RightMenu';
+import Stories from '../components/Stories';
 
 const Homepage = () => {
   return (
