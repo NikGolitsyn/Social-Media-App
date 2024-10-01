@@ -1,17 +1,34 @@
+import prisma from '@/lib/client';
+import { auth } from '@clerk/nextjs/server';
 import Image from 'next/image';
 
-const ProfileCard = () => {
+const ProfileCard = async () => {
+  const { userId } = auth();
+
+  if (!userId) return null;
+
+  const user = await prisma.user.findFirst({
+    where: {
+      id: userId,
+    },
+    include: {
+      _count: {
+        select: {
+          followers: true,
+        },
+      },
+    },
+  });
+
+  console.log(user);
+  if (!user) return null;
+
   return (
     <div className="p-4 bg-white rounded-lg shadow-md text-sm flex flex-col gap-6">
       <div className="h-20 relative">
+        <Image src={user?.cover || '/noCover.png'} alt="" fill className="rounded-md object-cover" />
         <Image
-          src="https://images.pexels.com/photos/2223082/pexels-photo-2223082.jpeg?auto=compress&cs=tinysrgb&w=400"
-          alt=""
-          fill
-          className="rounded-md object-cover"
-        />
-        <Image
-          src="https://images.pexels.com/photos/925263/pexels-photo-925263.jpeg?auto=compress&cs=tinysrgb&w=400"
+          src={user?.avatar || '/noAvatar.png'}
           alt=""
           width={48}
           height={48}
