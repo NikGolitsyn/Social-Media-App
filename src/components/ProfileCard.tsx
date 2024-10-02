@@ -20,7 +20,6 @@ const ProfileCard = async () => {
     },
   });
 
-  console.log(user);
   if (!user) return null;
 
   return (
@@ -36,7 +35,9 @@ const ProfileCard = async () => {
         />
       </div>
       <div className="h-20 flex flex-col gap-2 items-center">
-        <span className="font-semibold ">Jaydon Alvarez</span>
+        <span className="font-semibold ">
+          {user.name && user.surname ? user.name + ' ' + user.surname : user.username}
+        </span>
         <div className="flex items-center gap-4">
           <div className="flex">
             <Image
@@ -61,7 +62,7 @@ const ProfileCard = async () => {
               className="rounded-full object-cover w-3 h-3"
             />
           </div>
-          <span className="text-xs text-gray-500">500 Followers</span>
+          <span className="text-xs text-gray-500">{user._count.followers} Followers</span>
         </div>
         <button className="bg-blue-500 text-white text-xs rounded-md p-2">My Profile</button>
       </div>
