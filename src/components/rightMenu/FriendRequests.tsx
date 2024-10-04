@@ -1,7 +1,24 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import { auth } from '@clerk/nextjs/server';
+import prisma from '@/lib/client';
+import FriendRequestList from './FriendRequestList';
 
-const FriendRequests = () => {
+const FriendRequests = async () => {
+  const { userId } = auth();
+
+  if (!userId) return null;
+
+  const requests = await prisma.followRequest.findMany({
+    where: {
+      recieverId: userId,
+    },
+    include: {
+      sender: true,
+    },
+  });
+
+  if (!requests.length) return null;
+
   return (
     <div className="p-4 bg-white rounded-lg shadow-md text-sm flex flex-col gap-4">
       {/* TOP */}
@@ -12,56 +29,7 @@ const FriendRequests = () => {
         </Link>
       </div>
       {/* USER */}
-      <div className="flex items-center justify-between ">
-        <div className="flex items-center gap-4">
-          <Image
-            src="https://images.pexels.com/photos/12089901/pexels-photo-12089901.jpeg?auto=compress&cs=tinysrgb&w=400"
-            alt=""
-            width={40}
-            height={40}
-            className="w-10 h-10 rounded-full object-cover"
-          />
-          <span className="font-semibold">Elisha Hartman</span>
-        </div>
-        <div className="flex gap-3 justify-end">
-          <Image src="/accept.png" alt="accept" width={20} height={20} className="cursor-pointer" />
-          <Image src="/reject.png" alt="reject" width={20} height={20} className="cursor-pointer" />
-        </div>
-      </div>
-      {/* USER */}
-      <div className="flex items-center justify-between ">
-        <div className="flex items-center gap-4">
-          <Image
-            src="https://images.pexels.com/photos/12089901/pexels-photo-12089901.jpeg?auto=compress&cs=tinysrgb&w=400"
-            alt=""
-            width={40}
-            height={40}
-            className="w-10 h-10 rounded-full object-cover"
-          />
-          <span className="font-semibold">Elisha Hartman</span>
-        </div>
-        <div className="flex gap-3 justify-end">
-          <Image src="/accept.png" alt="accept" width={20} height={20} className="cursor-pointer" />
-          <Image src="/reject.png" alt="reject" width={20} height={20} className="cursor-pointer" />
-        </div>
-      </div>
-      {/* USER */}
-      <div className="flex items-center justify-between ">
-        <div className="flex items-center gap-4">
-          <Image
-            src="https://images.pexels.com/photos/12089901/pexels-photo-12089901.jpeg?auto=compress&cs=tinysrgb&w=400"
-            alt=""
-            width={40}
-            height={40}
-            className="w-10 h-10 rounded-full object-cover"
-          />
-          <span className="font-semibold">Elisha Hartman</span>
-        </div>
-        <div className="flex gap-3 justify-end">
-          <Image src="/accept.png" alt="accept" width={20} height={20} className="cursor-pointer" />
-          <Image src="/reject.png" alt="reject" width={20} height={20} className="cursor-pointer" />
-        </div>
-      </div>
+      <FriendRequestList requests={requests} />
     </div>
   );
 };
