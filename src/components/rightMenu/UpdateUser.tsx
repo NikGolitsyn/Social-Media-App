@@ -2,10 +2,12 @@
 import { updateProfile } from '@/lib/action';
 import { User } from '@prisma/client';
 import Image from 'next/image';
+import { CldUploadWidget } from 'next-cloudinary';
 import { useState } from 'react';
 
 const UpdateUser = ({ user }: { user: User }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [cover, setCover] = useState<any>();
 
   const handleClose = () => {
     setIsFormOpen(false);
@@ -20,25 +22,31 @@ const UpdateUser = ({ user }: { user: User }) => {
         <div className="fixed w-screen h-screen top-0 left-0 bg-black bg-opacity-65 flex items-center justify-center z-50">
           <form
             className="relative p-12 max-h-[calc(100%-48px)] bg-white rounded-lg shadow-md flex flex-col gap-2 w-full md:w-1/2 xl:w-1/3"
-            action={updateProfile}
+            action={(formData) => updateProfile(formData, cover?.secure_url)}
           >
             {/* TITLE */}
             <h1>Update Profile</h1>
             <div className="mt-4 text-xs text-gray-500">Use the navbar profile to change the avatar or username</div>
             {/* COVER PICTURE UPLOAD */}
-            <div className="flex flex-col gap-4 my-4">
-              <label htmlFor="">Cover Picture</label>
-              <div className="flex items-center gap-2 cursor-pointer">
-                <Image
-                  src={user.cover || 'noCover.png'}
-                  alt=""
-                  width={48}
-                  height={32}
-                  className="w-12 h-8 rounded-md object-cover"
-                />
-                <span className="text-xs underline text-gray-500">Change</span>
-              </div>
-            </div>
+            <CldUploadWidget uploadPreset="social media" onSuccess={(result) => setCover(result.info)}>
+              {({ open }) => {
+                return (
+                  <div className="flex flex-col gap-4 my-4" onClick={() => open()}>
+                    <label htmlFor="">Cover Picture</label>
+                    <div className="flex items-center gap-2 cursor-pointer">
+                      <Image
+                        src={user.cover || 'noCover.png'}
+                        alt=""
+                        width={48}
+                        height={32}
+                        className="w-12 h-8 rounded-md object-cover"
+                      />
+                      <span className="text-xs underline text-gray-500">Change</span>
+                    </div>
+                  </div>
+                );
+              }}
+            </CldUploadWidget>
             {/* WRAPPER */}
             <div className="flex flex-wrap justify-between gap-2 xl:gap-4">
               <div className="flex flex-col gap-4">
