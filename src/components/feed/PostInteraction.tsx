@@ -64,7 +64,8 @@ const PostInteraction = ({
             <Image src="/comment.png" alt="comment" width={16} height={16} className="cursor-pointer" />
             <span className="text-gray-300">|</span>
             <span className="text-gray-500">
-              322<span className="hidden md:inline"> Comments</span>
+              {commentNumber}
+              <span className="hidden md:inline"> Comments</span>
             </span>
           </div>
         </div>

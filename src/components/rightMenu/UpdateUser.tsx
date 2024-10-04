@@ -17,7 +17,7 @@ const UpdateUser = ({ user }: { user: User }) => {
     setIsFormOpen(false);
     state.success && router.refresh();
   };
-  console.log('user.cover', user.cover);
+
   return (
     <div className="">
       <span className="text-blue-500 text-xs cursor-pointer" onClick={() => setIsFormOpen(true)}>
