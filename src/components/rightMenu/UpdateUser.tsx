@@ -1,4 +1,5 @@
 'use client';
+import { updateProfile } from '@/lib/action';
 import { User } from '@prisma/client';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -19,7 +20,7 @@ const UpdateUser = ({ user }: { user: User }) => {
         <div className="fixed w-screen h-screen top-0 left-0 bg-black bg-opacity-65 flex items-center justify-center z-50">
           <form
             className="relative p-12 max-h-[calc(100%-48px)] bg-white rounded-lg shadow-md flex flex-col gap-2 w-full md:w-1/2 xl:w-1/3"
-            action=""
+            action={updateProfile}
           >
             {/* TITLE */}
             <h1>Update Profile</h1>
@@ -40,58 +41,78 @@ const UpdateUser = ({ user }: { user: User }) => {
             </div>
             {/* WRAPPER */}
             <div className="flex flex-wrap justify-between gap-2 xl:gap-4">
-              {/* INPUT */}
               <div className="flex flex-col gap-4">
                 <label htmlFor="" className="text-xs text-gray-500">
                   First Name
                 </label>
-                <input className="ring-1 ring-gray-300 p-[13px]" type="text" placeholder={user.name || 'John'} />
+                <input
+                  name="name"
+                  className="ring-1 ring-gray-300 p-[13px]"
+                  type="text"
+                  placeholder={user.name || 'John'}
+                />
               </div>
-              {/* INPUT */}
               <div className="flex flex-col gap-4">
                 <label htmlFor="" className="text-xs text-gray-500">
                   Surname
                 </label>
-                <input className="ring-1 ring-gray-300 p-[13px]" type="text" placeholder={user.surname || 'Doe'} />
+                <input
+                  name="surname"
+                  className="ring-1 ring-gray-300 p-[13px]"
+                  type="text"
+                  placeholder={user.surname || 'Doe'}
+                />
               </div>
-              {/* INPUT */}
               <div className="flex flex-col gap-4">
                 <label htmlFor="" className="text-xs text-gray-500">
                   Description
                 </label>
                 <input
+                  name="description"
                   className="ring-1 ring-gray-300 p-[13px]"
                   type="text"
                   placeholder={user.description || 'Life is beautiful...'}
                 />
               </div>
-              {/* INPUT */}
               <div className="flex flex-col gap-4">
                 <label htmlFor="" className="text-xs text-gray-500">
                   City
                 </label>
-                <input className="ring-1 ring-gray-300 p-[13px]" type="text" placeholder={user.city || 'New York'} />
+                <input
+                  name="city"
+                  className="ring-1 ring-gray-300 p-[13px]"
+                  type="text"
+                  placeholder={user.city || 'New York'}
+                />
               </div>
-              {/* INPUT */}
               <div className="flex flex-col gap-4">
                 <label htmlFor="" className="text-xs text-gray-500">
                   School
                 </label>
-                <input className="ring-1 ring-gray-300 p-[13px]" type="text" placeholder={user.school || 'MIT'} />
+                <input
+                  name="school"
+                  className="ring-1 ring-gray-300 p-[13px]"
+                  type="text"
+                  placeholder={user.school || 'MIT'}
+                />
               </div>
-              {/* INPUT */}
               <div className="flex flex-col gap-4">
                 <label htmlFor="" className="text-xs text-gray-500">
                   Work
                 </label>
-                <input className="ring-1 ring-gray-300 p-[13px]" type="text" placeholder={user.work || 'Apple Inc.'} />
+                <input
+                  name="work"
+                  className="ring-1 ring-gray-300 p-[13px]"
+                  type="text"
+                  placeholder={user.work || 'Apple Inc.'}
+                />
               </div>
-              {/* INPUT */}
               <div className="flex flex-col gap-4">
                 <label htmlFor="" className="text-xs text-gray-500">
                   Website
                 </label>
                 <input
+                  name="website"
                   className="ring-1 ring-gray-300 p-[13px] rounded-md text-sm"
                   type="text"
                   placeholder={user.website || 'example.com.'}
